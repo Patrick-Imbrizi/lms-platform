@@ -14,7 +14,6 @@ import Image from 'next/image';
 import { FileUpload } from '@/components/FileUpload';
 
 
-//todo: translation on form message
 
 interface ImageFormProps {
     initialData: Course;
