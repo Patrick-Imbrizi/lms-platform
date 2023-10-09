@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { ChapterTitleForm } from "./_components/ChapterTitleForm";
 import { ChapterDescriptionForm } from "./_components/ChapterDescriptionForm";
 import { ChapterAccessForm } from "./_components/ChapterAccessForm";
+import { ChapterVideoForm } from "./_components/ChapterVideoForm";
 
 const ChapterIdPage = async ({
     params
@@ -108,6 +109,11 @@ const ChapterIdPage = async ({
                             Add a video.
                         </h2>
                     </div>
+                    <ChapterVideoForm
+                        courseId={params.courseId}
+                        chapterId={params.chapterId}
+                        initialData={chapter}
+                    />
                 </div>
             </div>
         </div>
