@@ -1,8 +1,43 @@
-import React from 'react';
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
-const AnalyticsPage = () => {
+import { getAnalytics } from "@/actions/get-analytics";
+
+import { DataCard } from "./_components/DataCard";
+import { Chart } from "./_components/Chart";
+
+const AnalyticsPage = async () => {
+    const { userId } = auth();
+
+    if (!userId) {
+        redirect("/");
+    }
+
+    const {
+        data,
+        totalRevenue,
+        totalSales
+    } = await getAnalytics(userId);
+
+
+
     return (
-        <div>AnalyticsPage</div>
+        <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <DataCard
+                    label="Total Sales"
+                    value={totalSales}
+                />
+                <DataCard
+                    label="Total Revenue"
+                    value={totalRevenue}
+                    shouldFormat
+                />
+                <Chart
+                    data={data}
+                />
+            </div>
+        </div>
     )
 }
 
